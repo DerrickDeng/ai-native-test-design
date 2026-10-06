@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1320" height="720" viewBox="0 0 1320 720" role="img" aria-labelledby="title desc">
-  <title id="title">BDD Test Case Agent architecture</title>
+  <title id="title">AI-Native Test Design architecture</title>
   <desc id="desc">Requirement evidence becomes a formatted acceptance criteria source, then functional tests. Functional tests feed deterministic export, automation analysis, and regression design. Related Story evidence informs functional and regression design.</desc>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
@@ -25,7 +25,7 @@
   </defs>
 
   <rect width="1320" height="720" rx="28" fill="url(#background)"/>
-  <text x="64" y="74" class="label title">BDD Test Case Agent</text>
+  <text x="64" y="74" class="label title">AI-Native Test Design</text>
   <text x="64" y="104" class="label subtitle">Evidence-first functional design, automation analysis, and release regression composition</text>
 
   <text x="64" y="164" class="label section">REQUIREMENT EVIDENCE</text>

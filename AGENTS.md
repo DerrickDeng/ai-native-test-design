@@ -1,4 +1,4 @@
-# BDD Test Case Agent — Operating Contract
+# AI-Native Test Design — Operating Contract
 
 This repository is a repo-native quality-engineering workflow. It turns requirement evidence into Story-level functional tests, analyzes automation placement separately, composes release regression suites, and provides deterministic Jira/test-management mechanics through a CLI.
 

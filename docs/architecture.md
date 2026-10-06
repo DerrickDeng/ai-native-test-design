@@ -4,7 +4,7 @@
 
 The architecture optimizes for traceability, bounded agent judgment, deterministic verification, and safe external effects. It deliberately avoids requiring an application server or vector database for repository-scale work.
 
-![BDD Test Case Agent architecture](assets/architecture-overview.svg)
+![AI-Native Test Design architecture](assets/architecture-overview.svg)
 
 Solid arrows show deterministic artifact flow. Dashed arrows show related requirement evidence that informs agent judgment.
 

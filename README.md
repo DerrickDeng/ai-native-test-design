@@ -1,4 +1,4 @@
-# BDD Test Case Agent
+# AI-Native Test Design
 
 A repo-native reference architecture for turning Acceptance Criteria into traceable BDD functional tests, analyzing automation coverage, composing release regression suites, and synchronizing approved artifacts to Jira-compatible systems.
 

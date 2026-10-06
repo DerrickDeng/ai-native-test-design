@@ -1,6 +1,6 @@
 # QA Dashboard Requirements Wiki
 
-This folder holds the OpenViking tooling and the derived knowledge that live in the same repository as `requirement_testcase_agent`. The Story snapshots and notes in the root [`requirements/`](../requirements/) folder are the source of truth; the Wiki lets the BDD implementor look across Stories, and it never writes back to the requirements.
+This folder holds the OpenViking tooling and the derived knowledge that live in the same repository as `ai-native-test-design`. The Story snapshots and notes in the root [`requirements/`](../requirements/) folder are the source of truth; the Wiki lets the BDD implementor look across Stories, and it never writes back to the requirements.
 
 ## Current state
 

@@ -49,7 +49,7 @@ function createDestination() {
     return requested;
   }
 
-  return fs.mkdtempSync(path.join(os.tmpdir(), 'bdd-testcase-agent-public-'));
+  return fs.mkdtempSync(path.join(os.tmpdir(), 'ai-native-test-design-public-'));
 }
 
 // Copies only Git-tracked files, so ignored local state (wiki/.local, wiki/.venv,

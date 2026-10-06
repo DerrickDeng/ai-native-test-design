@@ -9,7 +9,7 @@ const REPO_ROOT = path.resolve(__dirname, '..');
 
 function showUsage() {
   console.log(`
-BDD Test Case Agent CLI
+AI-Native Test Design CLI
 
 Usage:
   node bin/jira-sync fetch <issueId>

@@ -1,5 +1,5 @@
 {
-  "name": "bdd-testcase-agent-cli",
+  "name": "ai-native-test-design",
   "version": "1.0.0",
   "private": true,
   "description": "Repo-native agent workflow for AC-grounded BDD test design, evidence checks, and Jira synchronization.",
