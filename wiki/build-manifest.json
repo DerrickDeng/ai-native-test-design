@@ -1,0 +1,83 @@
+{
+  "scope": "current QA Dashboard drafts in root requirements",
+  "language": "en",
+  "source_count": 13,
+  "source_collection": "viking://resources/qa-dashboard-sources",
+  "target_wiki": "viking://resources/qa-dashboard-wiki",
+  "target_status": "rebuilt from an empty target using only the 13 current English Story and note sources",
+  "snapshot_oid": "037d347e7b8eb6060a755ac002aedd3c9c3215e6",
+  "compile_task_id": "cmp_69ef1baa0a7c4bbaac0c8adfe5cc436e",
+  "compile_seconds": 901.6,
+  "compile_tokens": 176232,
+  "generated_pages": 7,
+  "distinct_source_links_verified": 13,
+  "export_path": "wiki/generated/qa-dashboard-wiki/index.md",
+  "retrieval_review": "wiki/retrieval-review.json",
+  "sources": [
+    {
+      "path": "requirements/QAD-101/QAD-101-2026-09-28-formatted.md",
+      "sha256": "cbbd35fc62f2d74a0e551d2f800cba4dbf9dff65650a830f2dca929e1391aa23",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-101"
+    },
+    {
+      "path": "requirements/QAD-101/note.md",
+      "sha256": "145fbcdf2b0755a3a1600c7c44d04a4d87638e0adfe437720541034684887ad9",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-101-note"
+    },
+    {
+      "path": "requirements/QAD-102/QAD-102-2026-09-28-formatted.md",
+      "sha256": "a7dafe343987c15ff7bc8a5eaa53c69e106ba57d851da555a7fc3ac6967ea16e",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-102"
+    },
+    {
+      "path": "requirements/QAD-102/note.md",
+      "sha256": "354e021d8b12d5aa0021846e698a9b99706ce4abf21274477aee92b35bd6b460",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-102-note"
+    },
+    {
+      "path": "requirements/QAD-103/QAD-103-2026-09-28-formatted.md",
+      "sha256": "00ba343cc477a70d8688ba082fc64b60b0a8a013410ab2ad216a3c890dab7ffb",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-103"
+    },
+    {
+      "path": "requirements/QAD-103/note.md",
+      "sha256": "f03e4fb48d5d835c597fab824c2d7d97f4edae30ec7a4d75abed572a37d2fab0",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-103-note"
+    },
+    {
+      "path": "requirements/QAD-104/QAD-104-2026-09-28-formatted.md",
+      "sha256": "5d442fd9eb18f9cb7c04c4f435e945b913681f29c12114b17ca9b4e492c5886c",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-104"
+    },
+    {
+      "path": "requirements/QAD-105/QAD-105-2026-09-28-formatted.md",
+      "sha256": "edddb32ddf3b443eff8eeadcf06261c1babc368888d717422fe79c151ae2060f",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-105"
+    },
+    {
+      "path": "requirements/QAD-105/note.md",
+      "sha256": "02d50608d7fb7e928ff7442121cbf8153300b462948593eb8872f156846aeba8",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-105-note"
+    },
+    {
+      "path": "requirements/QAD-106/QAD-106-2026-09-28-formatted.md",
+      "sha256": "daceeb85ac561a282a607e482fabed83cb195ee9d6dfe7993a4ee68282ed8ec1",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-106"
+    },
+    {
+      "path": "requirements/QAD-107/QAD-107-2026-09-28-formatted.md",
+      "sha256": "137916ba9ad1c93b8cd8b289a6e79444b906be3fbbf74dd6160ca58fb1e025f3",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-107"
+    },
+    {
+      "path": "requirements/QAD-107/note.md",
+      "sha256": "072f545008a5efa668971ba72ea3bd270a5f80c38a3a180017860b89246f4648",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-107-note"
+    },
+    {
+      "path": "requirements/QAD-108/QAD-108-2026-09-28-formatted.md",
+      "sha256": "ea52ceb5d23bdd0a483a51b8f1ac2bc6142fa7513a7ae9396db5d6000d88dae1",
+      "import_uri": "viking://resources/qa-dashboard-sources/QAD-108"
+    }
+  ]
+}

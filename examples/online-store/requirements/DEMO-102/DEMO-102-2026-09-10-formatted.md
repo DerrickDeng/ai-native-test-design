@@ -1,0 +1,11 @@
+# DEMO-102 — Submit an order
+
+## User Story
+
+As a signed-in customer, I want to submit an order for the available items in my basket.
+
+## Acceptance Criteria
+
+- A delivery method must be selected before submission.
+- When every basket item is available, submission creates an order with status Submitted and displays its confirmation ID.
+- When any basket item is unavailable, submission is rejected with the message "An item is no longer available" and no order is created.

@@ -1,0 +1,24 @@
+Scenario: 01 Delivery section displays each available method and its terms
+Given customer is signed in to the online store
+Given customer is reviewing an order with merchandise total "$40"
+When customer opens the Delivery section
+Then delivery method "<method>" should be displayed
+Then delivery estimate should be "<estimate>"
+Then delivery cost should be "<cost>"
+
+Examples:
+| method   | estimate          | cost |
+| Standard | 5–7 business days | $0   |
+| Express  | 1–2 business days | $12  |
+
+Scenario: 02 Selecting a delivery method updates the order total
+Given customer is signed in to the online store
+Given customer is reviewing an order with merchandise total "$40"
+When customer selects delivery method "<method>"
+Then the selected delivery cost should be "<cost>"
+Then the order total should be "<order_total>"
+
+Examples:
+| method   | cost | order_total |
+| Standard | $0   | $40         |
+| Express  | $12  | $52         |

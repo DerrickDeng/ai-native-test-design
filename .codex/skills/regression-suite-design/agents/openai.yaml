@@ -1,0 +1,4 @@
+interface:
+  display_name: "Module Regression Suite Design"
+  short_description: "Build a full mapping, design a compact regression suite, and produce a PO-readable Jira description"
+  default_prompt: "Use $regression-suite-design to build the full Feature–Scenario mapping, design the main E2E journeys and high-risk checks, fill in the coverage links, and produce a compact Jira description that lists only the regression cases and the functions they cover."

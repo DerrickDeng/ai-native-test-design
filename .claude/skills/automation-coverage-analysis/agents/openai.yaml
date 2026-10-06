@@ -1,0 +1,4 @@
+interface:
+  display_name: "Automation Coverage Analysis"
+  short_description: "Place scenarios at reliable automation boundaries"
+  default_prompt: "Use $automation-coverage-analysis to recommend automation layers and separate verified coverage from unknown or missing evidence."

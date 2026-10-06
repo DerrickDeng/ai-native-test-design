@@ -1,0 +1,4 @@
+interface:
+  display_name: "Functional Test Design"
+  short_description: "Create complete AC-grounded functional scenarios"
+  default_prompt: "Use $functional-test-design to turn this Story's verified acceptance criteria into complete manual Gherkin scenarios, with a coverage trace, related-Story checks, and an independent review."

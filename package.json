@@ -1,0 +1,25 @@
+{
+  "name": "bdd-testcase-agent-cli",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Repo-native agent workflow for AC-grounded BDD test design, evidence checks, and Jira synchronization.",
+  "main": "src/cli.js",
+  "type": "commonjs",
+  "bin": {
+    "jira-sync": "./bin/jira-sync"
+  },
+  "scripts": {
+    "start": "node bin/jira-sync",
+    "lint:feature": "node bin/jira-sync lint",
+    "export:user-story": "node scripts/export-jira-user-story.mjs",
+    "validate:user-story": "node scripts/validate-jira-user-story.mjs",
+    "skills:sync": "node scripts/sync-agent-skills.mjs",
+    "skills:check": "node scripts/sync-agent-skills.mjs --check",
+    "skills:validate": "node scripts/validate-skills.mjs",
+    "release:build": "node scripts/build-public-release.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

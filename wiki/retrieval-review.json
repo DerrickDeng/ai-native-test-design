@@ -1,0 +1,134 @@
+{
+  "scope": "fresh English QA Dashboard Wiki retrieval on 13 current Story and note sources",
+  "method": "assistant-selected targeted questions, translated from the earlier Chinese-language review with the same intent; expected pages fixed before the run; not an independent BDD implementor blind test",
+  "query": "ov find \"<question>\" -u viking://resources/qa-dashboard-wiki/ -n 10; rank counts distinct .md results, including the index and generated overview files",
+  "expected_page_note": "Q7 and Q8 accept either of two pages because the earlier combined AI page is now split into adoption and accuracy pages, and the AI date-only limit is stated on both the filter-scope and adoption pages.",
+  "snapshot_oid": "037d347e7b8eb6060a755ac002aedd3c9c3215e6",
+  "compile_task_id": "cmp_69ef1baa0a7c4bbaac0c8adfe5cc436e",
+  "summary": {
+    "top_1": 7,
+    "top_3": 9,
+    "total": 9
+  },
+  "checks": [
+    {
+      "id": "Q1",
+      "question": "Does this run's flaky count as passed, and how do passed, failed, and skipped make up the pass rate",
+      "expected_pages": [
+        "concept/execution-outcomes-and-instability.md"
+      ],
+      "rank": 1,
+      "top_3": [
+        "viking://resources/qa-dashboard-wiki/concept/execution-outcomes-and-instability.md",
+        "viking://resources/qa-dashboard-wiki/concept/ai-golden-comparison-accuracy.md",
+        "viking://resources/qa-dashboard-wiki/concept/report-ingestion-and-review-evidence.md"
+      ]
+    },
+    {
+      "id": "Q2",
+      "question": "Can a test with only two history observations, failed then passed, enter the flaky ranking",
+      "expected_pages": [
+        "concept/execution-outcomes-and-instability.md"
+      ],
+      "rank": 2,
+      "top_3": [
+        "viking://resources/qa-dashboard-wiki/concept/report-ingestion-and-review-evidence.md",
+        "viking://resources/qa-dashboard-wiki/concept/execution-outcomes-and-instability.md",
+        "viking://resources/qa-dashboard-wiki/concept/ai-golden-comparison-accuracy.md"
+      ]
+    },
+    {
+      "id": "Q3",
+      "question": "Can three observations passed failed skipped enter the flaky ranking, and why does runs equal 2",
+      "expected_pages": [
+        "concept/execution-outcomes-and-instability.md"
+      ],
+      "rank": 1,
+      "top_3": [
+        "viking://resources/qa-dashboard-wiki/concept/execution-outcomes-and-instability.md",
+        "viking://resources/qa-dashboard-wiki/concept/ai-golden-comparison-accuracy.md",
+        "viking://resources/qa-dashboard-wiki/concept/report-ingestion-and-review-evidence.md"
+      ]
+    },
+    {
+      "id": "Q4",
+      "question": "Is an always-failing test flaky, and are the failure list and the flaky ranking mutually exclusive",
+      "expected_pages": [
+        "concept/execution-outcomes-and-instability.md"
+      ],
+      "rank": 3,
+      "top_3": [
+        "viking://resources/qa-dashboard-wiki/concept/report-ingestion-and-review-evidence.md",
+        "viking://resources/qa-dashboard-wiki/index.md",
+        "viking://resources/qa-dashboard-wiki/concept/execution-outcomes-and-instability.md"
+      ]
+    },
+    {
+      "id": "Q5",
+      "question": "Is the Last 14 days summary pass rate cumulative, and does no execution data show 0%",
+      "expected_pages": [
+        "concept/execution-outcomes-and-instability.md"
+      ],
+      "rank": 1,
+      "top_3": [
+        "viking://resources/qa-dashboard-wiki/concept/execution-outcomes-and-instability.md",
+        "viking://resources/qa-dashboard-wiki/concept/report-ingestion-and-review-evidence.md",
+        "viking://resources/qa-dashboard-wiki/concept/execution-filter-scope.md"
+      ]
+    },
+    {
+      "id": "Q6",
+      "question": "Can a run with only JSON and no HTML bundle show a trace, and does reading a report need a session or an ingest token",
+      "expected_pages": [
+        "concept/report-ingestion-and-review-evidence.md"
+      ],
+      "rank": 1,
+      "top_3": [
+        "viking://resources/qa-dashboard-wiki/concept/report-ingestion-and-review-evidence.md",
+        "viking://resources/qa-dashboard-wiki/concept/people-sessions-and-ingest-authorization.md",
+        "viking://resources/qa-dashboard-wiki/concept/execution-filter-scope.md"
+      ]
+    },
+    {
+      "id": "Q7",
+      "question": "A log with accepted items but no comparison: does it count toward adoption or accuracy",
+      "expected_pages": [
+        "concept/ai-adoption-metrics.md",
+        "concept/ai-golden-comparison-accuracy.md"
+      ],
+      "rank": 1,
+      "top_3": [
+        "viking://resources/qa-dashboard-wiki/concept/ai-adoption-metrics.md",
+        "viking://resources/qa-dashboard-wiki/concept/.overview.md",
+        "viking://resources/qa-dashboard-wiki/concept/report-ingestion-and-review-evidence.md"
+      ]
+    },
+    {
+      "id": "Q8",
+      "question": "After switching Application, do AI statistics change along with execution data",
+      "expected_pages": [
+        "concept/execution-filter-scope.md",
+        "concept/ai-adoption-metrics.md"
+      ],
+      "rank": 1,
+      "top_3": [
+        "viking://resources/qa-dashboard-wiki/concept/execution-filter-scope.md",
+        "viking://resources/qa-dashboard-wiki/concept/report-ingestion-and-review-evidence.md",
+        "viking://resources/qa-dashboard-wiki/concept/execution-outcomes-and-instability.md"
+      ]
+    },
+    {
+      "id": "Q9",
+      "question": "Does API days 45 being valid mean the UI can select 45 days",
+      "expected_pages": [
+        "concept/execution-filter-scope.md"
+      ],
+      "rank": 1,
+      "top_3": [
+        "viking://resources/qa-dashboard-wiki/concept/execution-filter-scope.md",
+        "viking://resources/qa-dashboard-wiki/concept/execution-outcomes-and-instability.md",
+        "viking://resources/qa-dashboard-wiki/concept/ai-adoption-metrics.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+Scenario: 01 Submit an order when every basket item is available
+Given customer is signed in to the online store
+Given customer has selected a delivery method
+Given every item in the basket is available
+When customer submits the order
+Then an order should be created with status "Submitted"
+Then the order confirmation ID should be displayed
+
+Scenario: 02 Reject submission when a basket item is unavailable
+Given customer is signed in to the online store
+Given customer has selected a delivery method
+Given an item in the basket is unavailable
+When customer submits the order
+Then submission should be rejected with message "An item is no longer available"
+Then no order should be created

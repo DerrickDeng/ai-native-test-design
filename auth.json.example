@@ -1,0 +1,5 @@
+{
+  "jira": {
+    "token": "YOUR_JIRA_PERSONAL_ACCESS_TOKEN"
+  }
+}

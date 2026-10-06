@@ -1,0 +1,4 @@
+interface:
+  display_name: "Testcase Agent CLI"
+  short_description: "Operate local and Jira testcase workflows safely"
+  default_prompt: "Use $testcase-agent-cli to run the appropriate checked testcase workflow and report all local or remote changes."

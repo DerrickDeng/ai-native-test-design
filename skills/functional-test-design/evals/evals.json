@@ -1,0 +1,101 @@
+{
+  "skill_name": "functional-test-design",
+  "notes": "Fixtures under evals/files/ are synthetic. Each eval targets one weakness: missed claims, guessed logic, cross-Story blindness, and the independent review. Run with evals/prepare-run.mjs. Prompts use {repo} for the prepared repository and {outputs} for the output directory. Expectations that only a version with the coverage trace or the review step can meet start with [process]; score them apart from content expectations. Iteration 1: eval 3 separated the versions. Iteration 2: evals 1 and 2 were saturated for content, so iteration 3 ran only evals 3 and 4. Eval 4 was rebuilt with subtler defects (shipping counted in the result, wrong order status, a paraphrased rule of another Story) and with the shipping fee corrected to 10 in the correct scenario 02.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "dense-ac-hidden-claims",
+      "fixture": "dense-refund-rate",
+      "issue": "DEMO-201",
+      "prompt": "The formatted requirement for DEMO-201 is already in requirements/. Use the skill at {repo}/skill-under-test (read its SKILL.md first and follow it) to design complete functional tests for this Story in {repo}, and write the feature to testcases/DEMO-201.feature. Do not fetch, export, or upload anything. When done, write the final report to {outputs}/report.md.",
+      "expected_output": "A lint-clean feature whose scenarios prove every claim in the five acceptance criteria with concrete data, including the negation, the formula terms, both surfaces, the selection rules, the signed comparison value across a date gap, the two empty states, and the display format.",
+      "expectations": [
+        "A scenario asserts that the Completed count in the report header does not include a partially refunded order, using data that contains one",
+        "The refund rate assertion counts partially refunded orders in the numerator, and the data makes a wrong count visible",
+        "Cancelled orders are excluded from the denominator: at least one scenario includes cancelled orders and its expected rate differs from the rate computed with them included",
+        "The daily trend chart is asserted to use the same formula",
+        "The per-category table is asserted to use the same formula, separately from the trend chart",
+        "The summary-card selection is tested with at least two dates that have orders, and the expected card shows the most recent date with orders rather than a merged rate for the whole range",
+        "The comparison value is asserted as a concrete signed value in the \"+x.x pp\" or \"-x.x pp\" form, measured against a previous date with orders that is not the previous calendar day (the data has a gap in dates), and the arithmetic is correct",
+        "The rate shows \"—\" when the range has no orders, and the case where every order is cancelled (eligible orders is zero) is asserted too; the two cases may be in one scenario or two",
+        "The comparison value is a difference in percentage points between two rates, and the scenario computes both rates from its own data",
+        "The comparison value is asserted to be hidden when there is no previous date with orders",
+        "The one-decimal-place format with a percent sign is asserted with a concrete value, for example \"33.3%\"",
+        "Every expected rate in the feature is arithmetically correct for the data given in that scenario (recompute each one)",
+        "No scenario tests behavior the requirement never mentions, such as permissions, performance, export, or accessibility",
+        "The feature lints with zero errors (outputs/lint.txt exit code 0)",
+        "[process] A coverage trace exists at requirements/DEMO-201/coverage.md with an atom table and an assertions table",
+        "[process] The report states the independent review honestly: either its findings with each accepted or rejected, or that it was not run. It does not present a started-but-unreturned review as pending or as done"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "gaps-and-conflict-no-guessing",
+      "fixture": "gaps-delivery",
+      "issue": "DEMO-202",
+      "prompt": "Please design functional tests for DEMO-202. The formatted requirement is under requirements/DEMO-202. Use the skill at {repo}/skill-under-test (read SKILL.md first and follow it), write the feature to testcases/DEMO-202.feature, and handle anything the requirement leaves unclear by the skill's rules. Do not fetch, export, or upload. When done, write the final report to {outputs}/report.md.",
+      "expected_output": "A small feature that tests only what is stated (express fee, Express available before 14:00, order summary showing method and fee) and a note.md whose questions cover weekend delivery, rounding, the standard-fee conflict, Express at or after 14:00, and the delivery estimate. No guessed results.",
+      "expectations": [
+        "requirements/DEMO-202/note.md contains a concrete question asking what observable result confirms that weekend delivery was selected",
+        "note.md contains a concrete question about how delivery fees are rounded",
+        "note.md records that the standard delivery fee conflicts between the acceptance criteria (free) and the description notes (3 for baskets under 10), citing both",
+        "No scenario asserts a specific rounding behavior or a rounded fee value",
+        "No scenario asserts a fee for standard delivery (neither 0 nor 3)",
+        "No scenario asserts any outcome of selecting weekend delivery (no confirmation, fee, or date)",
+        "A scenario asserts that express delivery costs 8",
+        "A scenario asserts that the order summary shows both the method name and its fee after a method is selected",
+        "A scenario asserts that Express delivery is available for an order placed before 14:00, either with a clock time before 14:00 or in the requirement's own words",
+        "No scenario asserts that Express is unavailable, hidden, or disabled at or after 14:00, and no scenario uses exactly 14:00 as data with an expected outcome, because the requirement states only the before-14:00 rule",
+        "note.md contains a concrete question about what happens to Express delivery for orders placed at or after 14:00",
+        "No scenario asserts a specific estimated delivery date or number of days, and note.md contains a question about how the estimate is worked out",
+        "The feature has no scenarios for concerns the requirement never mentions, such as payment failure, address validation, stock, permissions, accessibility, or performance",
+        "The feature contains no TBC comments, assumption comments, or scenario that quietly picks one side of the fee conflict",
+        "The feature lints with zero errors (outputs/lint.txt exit code 0)",
+        "The final report lists the unresolved questions and says which scenarios they block, without claiming the tests were executed",
+        "[process] The report states the independent review honestly: either its findings with each accepted or rejected, or that it was not run. It does not present a started-but-unreturned review as pending or as done"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "related-stories-and-ownership",
+      "fixture": "cross-story-returns",
+      "issue": "DEMO-203",
+      "prompt": "DEMO-203 (return shipping label printing) needs functional tests; the formatted requirement is in requirements/DEMO-203. The repository also has requirements and existing features for other Stories. Use the skill at {repo}/skill-under-test (read SKILL.md first and follow it), and write the feature to testcases/DEMO-203.feature. Do not fetch, export, or upload. When done, write the final report to {outputs}/report.md.",
+      "expected_output": "A feature that covers the label button, file name, and print limit of DEMO-203, shows the button for eligible and ineligible items without retesting DEMO-204's eligibility rules, and a note.md that records the 14 versus 30 day conflict.",
+      "expectations": [
+        "requirements/DEMO-203/note.md records that DEMO-203 says 14 days while DEMO-204 says 30 days for return eligibility, citing both Stories, as an unresolved question",
+        "There is one scenario in which the Print label button is shown for an eligible item, and the button being hidden is tested with one ineligible item (any reason); no second scenario hides the button for a different eligibility reason",
+        "No scenario asserts the labels \"Eligible for return\" or \"Not eligible for return\", or a delivery-window boundary (14, 15, 29, 30 or 31 days), as its expected outcome; those belong to DEMO-204",
+        "A scenario asserts that clicking Print label downloads a PDF named according to the pattern return-label-<order number>.pdf, with a concrete order number",
+        "A scenario asserts that the 3rd print attempt for an item still downloads a file, and a scenario asserts that the 4th attempt shows \"Label limit reached\" and downloads no file",
+        "No scenario in testcases/DEMO-203.feature has the same When and Then steps as a scenario in testcases/DEMO-204.feature (outputs/lint.txt has no cross-story-overlap warning)",
+        "No two scenarios in the DEMO-203 feature would fail for the same reason",
+        "The work shows that both DEMO-204 and DEMO-205 were read and classified (for example in coverage.md or the report), including that DEMO-205 has no test impact",
+        "note.md and coverage.md (if present) claim nothing that the feature does not contain: every scenario or behavior they say is covered exists in the final feature",
+        "The feature lints with zero errors (outputs/lint.txt exit code 0)",
+        "[process] The report states the independent review honestly: either its findings with each accepted or rejected, or that it was not run. It does not present a started-but-unreturned review as pending or as done",
+        "[process] requirements/DEMO-203/review.md holds what the reviewer returned, or the report says the review was not run"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "independent-review-finds-seeded-defects",
+      "fixture": "review-loyalty",
+      "issue": "DEMO-206",
+      "prompt": "Someone has already written the feature for DEMO-206 (testcases/DEMO-206.feature); the requirement and related Stories are under requirements/, and the existing DEMO-207 feature is also in testcases/. Use the skill at {repo}/skill-under-test (read SKILL.md and its references) and review this design with its independent review process. You are only the reviewer: report problems only and do not modify any file. Write the review to {outputs}/review.md.",
+      "expected_output": "A review that reports the missing cancelled-order rule, the two wrong expected results (shipping counted, points credited at Shipped), the duplicate, the retested rule of another Story, and the weak receipt assertion, each with a quote, without accusing the four correct scenarios.",
+      "expectations": [
+        "The review reports that AC 4 (a cancelled order earns no points) has no scenario",
+        "The review reports that scenario 06 expects 7 points, which counts the shipping fee as spend; the requirement excludes shipping, so the result is 6",
+        "The review reports that scenario 07 credits points when the order status becomes \"Shipped\", while AC 2 says points are credited when the status becomes \"Delivered\"",
+        "The review reports that scenario 08 duplicates scenario 01: the same action and outcome, differing only in an irrelevant Given (the customer name)",
+        "The review reports that scenario 09 tests the rule that a member cannot use more points than the balance, which DEMO-207 owns (its AC 2) and already has a scenario for, although the numbers differ",
+        "The review reports that scenario 05 is weaker than the requirement allows: it asserts only that a points line exists although the value (4) follows from AC 1",
+        "Every finding that cites requirement text gives it as a verbatim quote; a finding about a missing scenario or about the feature may quote the requirement or the scenario line",
+        "The review makes no accusation against scenarios 01, 02, 03 or 04. An accusation is a finding that says the scenario is wrong, unsupported, duplicate, weak, or should be changed or removed. A note or question about wording or navigation that covers several scenarios is not an accusation",
+        "The review does not raise generic risks the requirement never mentions (for example negative amounts, concurrency, currency, or performance)",
+        "No file was modified: testcases/DEMO-206.feature and testcases/DEMO-207.feature are identical to the fixtures under evals/files/review-loyalty"
+      ]
+    }
+  ]
+}

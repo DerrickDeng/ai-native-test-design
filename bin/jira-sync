@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+/**
+ * Jira Sync CLI Entry Point
+ */
+
+const cli = require('../src/cli');
+
+const args = process.argv.slice(2);
+
+cli.run(args)
+  .then(exitCode => {
+    process.exit(exitCode || 0);
+  })
+  .catch(err => {
+    console.error('Fatal CLI Error:', err);
+    process.exit(1);
+  });

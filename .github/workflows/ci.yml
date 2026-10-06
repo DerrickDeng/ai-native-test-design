@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm test
+      - run: npm run skills:validate
+      - run: npm run skills:check
+      - run: node ./bin/jira-sync lint DEMO-101 examples/online-store/testcases/DEMO-101.feature
+      - run: node ./bin/jira-sync lint DEMO-102 examples/online-store/testcases/DEMO-102.feature
+      - run: node scripts/export-jira-user-story.mjs examples/online-store
+      - run: node scripts/validate-jira-user-story.mjs examples/online-store
+      - run: npm run release:build

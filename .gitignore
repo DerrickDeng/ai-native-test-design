@@ -1,0 +1,34 @@
+# Ignore local credentials
+auth.json
+env.txt
+testcase-agent.config.json
+
+# OS metadata
+.DS_Store
+
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Local Claude settings, except generated project-skill mirrors.
+.claude/*
+!.claude/skills/
+!.claude/skills/**
+
+# Local AI agent logs
+*.agent.log
+# Local OpenViking runtime, credentials and derived data
+wiki/.venv/
+wiki/.local/
+wiki/data/
+wiki/models/
+wiki/evidence/
+wiki/evaluation/
+wiki/sources/
+wiki/*.log
+wiki/tools/__pycache__/
+
+# Eval run workspaces (skill-creator iterations)
+*-workspace/
