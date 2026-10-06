@@ -20,6 +20,8 @@ Each task ran **3 times** per version.
 
 How to read this:
 
+- Agent time for the new version, from the prompt to the final report: median
+  3.0 min, range 1.2–7.3 min over the 12 runs.
 - Tasks 1 and 2 passed every check in all three runs of the new version.
 - Task 3 varied between runs (11, 8, and 11 of 12 checks), so related-Story
   ownership is the least stable behavior.
