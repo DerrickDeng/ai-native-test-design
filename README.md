@@ -139,6 +139,8 @@ npm run release:build
 git diff --check
 ```
 
+Agent evaluation results for `functional-test-design` are in [docs/evaluation/results.md](docs/evaluation/results.md).
+
 Passing these checks proves structural and deterministic invariants. It does not prove business correctness or successful product execution; those require semantic review and, where applicable, execution evidence.
 
 ## Five-minute interview walkthrough
