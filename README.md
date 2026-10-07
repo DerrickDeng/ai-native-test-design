@@ -1,37 +1,56 @@
 # AI-Native Test Design
 
-A repo-native reference architecture for turning Acceptance Criteria into traceable BDD functional tests, analyzing automation coverage, composing release regression suites, and synchronizing approved artifacts to Jira-compatible systems.
+Agent skills that turn a Jira story into traceable BDD tests. The skills also
+recommend the automation layer and select the release regression suite.
 
-The central design choice is separation of concerns:
+Each decision has one owner:
 
-- requirements decide **what behavior must be tested**;
-- architecture decides **where automation should cover it**;
-- risk decides **how much E2E and regression depth is justified**;
-- deterministic tooling verifies structure and performs external synchronization.
+- The **requirements** decide what behavior to test.
+- The **architecture** decides where automation covers it.
+- The **risk** decides how much end-to-end and regression testing is necessary.
+- **Deterministic tools** check the structure and do the Jira synchronization.
 
-## Why this is an agent, not a prompt collection
+## Why this is an agent, not a set of prompts
 
-- Four bounded skills route functional design, automation analysis, regression design, and CLI operations.
-- Raw requirement snapshots remain immutable; generated artifacts retain traceability.
-- Mechanical checks are deterministic and separate from semantic agent judgment.
-- Related Story context is traced to the Story, AC, or note that justifies reading it.
-- Remote writes are explicit operations and are not implied by generation or validation.
-- The same canonical skills are mirrored and checked for Codex, Claude Code, and Gemini CLI.
+- Four skills have clear limits. Each skill does one job: functional design,
+  automation analysis, regression design, or CLI operations.
+- Raw requirement snapshots do not change. Each generated test traces back to
+  its source.
+- Mechanical checks are deterministic. They are separate from the judgment of
+  the agent.
+- The agent reads a related story only when the target story, AC, or note
+  gives a reason.
+- Remote writes are explicit commands. Generation and validation never write to
+  Jira.
+- The same skills are mirrored for Claude Code, Codex, and Gemini CLI. A check
+  makes sure that the mirrors stay the same.
 
-See [Architecture](docs/architecture.md) for the component boundaries and data flow.
+[Architecture](docs/architecture.md) shows the components and the data flow.
 
 ## Capabilities
 
-| Capability | Canonical skill | Principal artifact |
+| Capability | Skill | Output |
 |---|---|---|
-| Complete Story functional tests | `functional-test-design` | `.feature` plus requirement questions |
-| Automation-layer recommendation | `automation-coverage-analysis` | Evidence-based coverage matrix |
-| Release regression composition | `regression-suite-design` | Mapping, compact suite, Jira summary |
-| Deterministic repository operations | `testcase-agent-cli` | Validated local or synchronized artifacts |
+| Complete functional tests for a story | `functional-test-design` | `.feature` file and requirement questions |
+| Automation-layer recommendation | `automation-coverage-analysis` | Coverage matrix with evidence |
+| Release regression selection | `regression-suite-design` | Mapping, compact suite, and Jira summary |
+| Deterministic repository operations | `testcase-agent-cli` | Validated local or synchronized files |
+
+## What is in this repository
+
+- `requirements/` and `testcases/`: 8 simulated stories for the
+  [QA Dashboard](https://github.com/DerrickDeng/qa-dashboard) (QAD-101 to
+  QAD-108). Each story has its requirement, its `.feature` file, a coverage
+  trace, open questions, and an independent review.
+- `wiki/`: a requirement wiki compiled from those stories. Each rule in the
+  wiki links to the story that states it. See [wiki/README.md](wiki/README.md).
+- `examples/online-store/`: a small synthetic example for a first look.
+- `skills/`: the canonical skills. `.claude/`, `.codex/`, and `.gemini/` hold
+  generated mirrors.
 
 ## Quick start
 
-Requirements: Node.js 18 or later. The CLI uses Node built-ins and has no runtime package dependencies.
+You need Node.js 18 or later. The CLI uses only Node built-ins.
 
 ```bash
 npm test
@@ -39,7 +58,14 @@ npm run skills:check
 node bin/jira-sync --help
 ```
 
-The synthetic online-store example exercises the workflow without proprietary data:
+Lint a QA Dashboard story. The lint also checks that each quote in the coverage
+trace is in the requirement text:
+
+```bash
+node bin/jira-sync lint QAD-103 testcases/QAD-103.feature
+```
+
+Run the synthetic online-store example:
 
 ```bash
 node ./bin/jira-sync lint DEMO-101 examples/online-store/testcases/DEMO-101.feature
@@ -47,9 +73,11 @@ node scripts/export-jira-user-story.mjs examples/online-store
 node scripts/validate-jira-user-story.mjs examples/online-store
 ```
 
-The example includes raw and formatted requirements, four functional scenarios, generated Jira text, and an automation recommendation that correctly reports existing implementation evidence as `Unknown`.
+The example has raw and formatted requirements, four functional scenarios,
+generated Jira text, and an automation recommendation. The recommendation
+reports existing implementation evidence as `Unknown`, which is correct.
 
-## Repository workflow
+## Workflow
 
 ```text
 Jira or requirement evidence
@@ -58,45 +86,52 @@ Jira or requirement evidence
 immutable raw snapshot -> lossless formatted AC
           |
           v
-functional-test-design -> Story-level .feature -> deterministic lint/export
+functional-test-design -> story-level .feature -> deterministic lint and export
           |                         |
-          |                         +-> optional explicit Jira/Zephyr sync
+          |                         +-> optional, explicit Jira or Zephyr sync
           v
-automation-coverage-analysis -> layer/evidence matrix
+automation-coverage-analysis -> layer and evidence matrix
           |
           v
 regression-suite-design -> release mapping and compact regression suite
 ```
 
-Detailed repository rules and completion gates live in [AGENTS.md](AGENTS.md). Task-specific judgment lives in `skills/`.
+[AGENTS.md](AGENTS.md) has the repository rules and the completion gates. The
+judgment for each task is in `skills/`.
 
-## Canonical skills and mirrors
+## Skills and mirrors
 
-Edit only `skills/`, then regenerate the agent-specific mirrors:
+Edit only `skills/`. Then generate the mirrors again:
 
 ```bash
 npm run skills:sync
 npm run skills:check
 ```
 
-The check fails when `.codex/skills`, `.claude/skills`, or `.gemini/skills` differs from the canonical source.
+The check fails if `.codex/skills`, `.claude/skills`, or `.gemini/skills` is
+different from `skills/`.
 
-## Related Story context
+## Related story context
 
-Read the target Story and its AC first. Follow another Story when the target requirement names it or describes a prerequisite that the other Story explains. Confirm the rule in that Story, cite the original evidence, and record conflicts in `note.md`. A generated Wiki can help locate and synthesize related requirements but does not replace their snapshots.
+Read the target story and its AC first. Read another story only when the target
+requirement names it or needs a rule that the other story owns. Confirm the rule
+in that story, cite the original text, and record conflicts in `note.md`. The
+wiki helps you find related requirements. It does not replace them.
 
 ## Jira adapter configuration
 
-Copy the configuration and credential templates locally:
+Copy the configuration and credential templates:
 
 ```bash
 cp testcase-agent.config.example.json testcase-agent.config.json
 cp auth.json.example auth.json
 ```
 
-Both local files are ignored by Git. Configure installation-specific fields and option IDs in `testcase-agent.config.json`; do not hard-code them in skills or core policy.
+Git ignores both local files. Put the fields and option IDs of your Jira
+installation in `testcase-agent.config.json`. Do not put them in the skills or
+the core policy.
 
-Supported environment overrides include:
+These environment variables override the configuration:
 
 - `TESTCASE_AGENT_ROOT`
 - `TESTCASE_AGENT_CONFIG`
@@ -107,27 +142,35 @@ Supported environment overrides include:
 - `JIRA_TEST_ISSUE_TYPE`
 - `JIRA_TEST_LEVEL_FIELD`
 
-`fetch` is a remote read that creates a local snapshot. `upload-user-story` and `create-zephyr-tests` are remote writes and should be run only after reviewing the exact target and generated content.
+`fetch` reads from Jira and writes a local snapshot. `upload-user-story` and
+`create-zephyr-tests` write to Jira. Run them only after you review the exact
+target and the generated content.
 
-## Company-environment smoke
+## First connection to a company Jira
 
-After placing the repository inside the company network and creating local `testcase-agent.config.json` and `auth.json` files, verify the integration in two stages:
+Put the repository inside the company network. Create the local
+`testcase-agent.config.json` and `auth.json` files. Then do the check in two
+steps.
+
+Step 1, read only:
 
 ```bash
-# Local and remote-read smoke
 npm test
 node bin/jira-sync fetch <READ_ONLY_SMOKE_ISSUE_ID>
 ```
 
-Confirm that the fetch created a dated raw snapshot under `requirements/<ISSUE_ID>/` and did not change Jira. Stop after this read-only smoke unless a separate request explicitly authorizes a write against a designated test Story.
+Make sure that the fetch created a dated raw snapshot in
+`requirements/<ISSUE_ID>/` and did not change Jira. Stop here, unless you have
+a separate approval to write to a specified test story.
+
+Step 2, write (only with that approval):
 
 ```bash
-# Run only with separate authorization for the exact test Story.
 node bin/jira-sync upload-user-story <TEST_ISSUE_ID>
 node bin/jira-sync create-zephyr-tests <TEST_ISSUE_ID>
 ```
 
-Never use a production Story as the first remote-write smoke target.
+Do not use a production story for the first write.
 
 ## Validation
 
@@ -139,18 +182,29 @@ npm run release:build
 git diff --check
 ```
 
-Agent evaluation results for `functional-test-design` are in [docs/evaluation/results.md](docs/evaluation/results.md).
+CI runs these checks on each push. The agent evaluation results for
+`functional-test-design` are in
+[docs/evaluation/results.md](docs/evaluation/results.md).
 
-Passing these checks proves structural and deterministic invariants. It does not prove business correctness or successful product execution; those require semantic review and, where applicable, execution evidence.
+These checks prove the structure and the deterministic rules. They do not
+prove that the business logic is correct or that the product works. That needs
+a semantic review and, where applicable, evidence from a test run.
 
-## Five-minute interview walkthrough
+## Five-minute walkthrough
 
-1. Start with the responsibility table in [Architecture](docs/architecture.md) and explain why functional design, automation placement, and release regression are separate decisions.
-2. Compare DEMO-102's delivery-method prerequisite with DEMO-101's AC to show how cross-Story context stays anchored to source requirements.
-3. Compare the formatted AC, `.feature`, and automation coverage analysis for `DEMO-102` to demonstrate traceability and honest `Unknown` coverage status.
-4. Run the validation block above to show deterministic quality gates.
-5. Run `npm run release:build` to demonstrate that publication itself uses a reviewed allowlist and a fresh-history boundary.
+1. Read the responsibility table in [Architecture](docs/architecture.md). It
+   shows why functional design, automation placement, and release regression
+   are separate decisions.
+2. Open `requirements/QAD-103/`. Compare the requirement, the coverage trace,
+   and `testcases/QAD-103.feature`. Each `Then` traces to an exact quote.
+3. Read `requirements/QAD-103/review.md`. An independent review found gaps in
+   the first design, and the notes record the open questions.
+4. Run the validation commands above. They are the deterministic quality gates.
 
 ## Publishing safely
 
-Never publish a working history that contained organization-owned Stories, screenshots, internal hosts, usernames, field identifiers, or credentials. Run `npm run release:build`, then initialize a new Git history from the allowlisted directory it prints. Follow [the public-release checklist](docs/public-release-checklist.md).
+Do not publish a history that contains company stories, screenshots, internal
+hosts, user names, field IDs, or credentials. Before the first publication,
+start a new Git history. `npm run release:build` copies only the allowlisted,
+tracked files and scans them for internal hosts and real issue keys. Follow
+[the public-release checklist](docs/public-release-checklist.md).
