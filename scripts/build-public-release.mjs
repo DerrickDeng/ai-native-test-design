@@ -34,7 +34,7 @@ const PUBLIC_ENTRIES = [
 ];
 
 const IGNORED_NAMES = new Set(['.DS_Store']);
-const ALLOWED_URL_HOSTS = new Set(['127.0.0.1', 'localhost', 'json-schema.org', 'www.w3.org']);
+const ALLOWED_URL_HOSTS = new Set(['127.0.0.1', 'localhost', 'github.com', 'json-schema.org', 'www.w3.org']);
 const SYNTHETIC_KEY_PREFIXES = new Set(['ACC', 'DEMO', 'DRAFT', 'E2E', 'LAB', 'QAD']);
 // Tokens shaped like issue keys that are not issue keys: AC-01, SHA-256, UTF-8.
 const NON_ISSUE_PREFIXES = new Set(['AC', 'SHA', 'UTF']);
