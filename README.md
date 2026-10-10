@@ -4,6 +4,8 @@ Agent workflows that turn Jira Stories into BDD test cases, recommend automation
 
 Requirements guide test design. Implementation architecture guides automation layers. Business risk guides regression selection.
 
+A Requirement Wiki connects requirements across Stories and supplies context to agents for test design and UI automation.
+
 ## What it does
 
 | Skill / Tool | What it does |
@@ -13,6 +15,18 @@ Requirements guide test design. Implementation architecture guides automation la
 | [Regression Suite Design](skills/regression-suite-design/) | Combines existing functional test scenarios into representative user journeys for release regression. Adds high-risk scenarios based on business risk. |
 | [Jira CLI](skills/testcase-agent-cli/) | Downloads Jira requirements and referenced screenshots, uploads BDD cases to Story tickets, and creates or updates Zephyr tests. |
 | [Requirement Wiki](wiki/README.md) | Uses OpenViking to organize Stories into a Wiki that helps agents find requirements and retrieve context. |
+
+## Requirement Wiki: context across Stories
+
+Business rules often span several Stories and notes. The Requirement Wiki uses OpenViking to organize them into connected topic pages with an index.
+
+- **Find requirements:** search by a business question and locate the relevant Stories and rules.
+- **Connect related rules:** retrieve prerequisites and behavior described in other Stories.
+- **Supply agent context:** give test design and automation agents the relevant requirements without reading the entire collection.
+
+Each rule links to its source Story or note, so agents can check the retrieved context against the original requirement.
+
+See the [Requirement Wiki guide](wiki/README.md) for setup, retrieval, and an example build.
 
 ## Basic use
 
@@ -40,8 +54,6 @@ node scripts/validate-jira-user-story.mjs examples/online-store
 - **Plan automation layers:** provide existing functional scenarios and implementation architecture. Use `automation-coverage-analysis` to recommend test layers and report coverage evidence.
 - **Build release regression:** provide the module's functional tests. Use `regression-suite-design` to compose user journeys, select high-risk scenarios, and record coverage and selection reasons.
 - **Work with Jira:** configure the Jira adapter, then use the CLI to fetch requirements or explicitly upload test content. See the [usage guide](docs/usage.md).
-
-The workflows are separate tasks. Layer recommendations are not proof of existing coverage, and generated test cases are not evidence that the product passed.
 
 ## Examples and evaluation
 
