@@ -10,6 +10,10 @@ An OpenViking-based workflow that organizes Stories and notes into a Requirement
 - Keeps stated rules, inferences, conflicts, and open questions distinct.
 - Uses OpenViking for search and page retrieval, and exports Wiki pages as Markdown.
 
+## Why LLM Wiki instead of basic RAG
+
+Requirements often span several Stories. LLM Wiki connects their rules into reusable topic pages with source links, instead of leaving agents to piece together retrieved text chunks on every query. OpenViking still provides retrieval; the Wiki adds an organized layer of requirement context.
+
 ## How it works
 
 The Story files and notes in [`requirements/`](../requirements/) remain the source of truth. OpenViking compiles them into a derived Wiki using the [LLM Wiki skill](skills/llm-wiki/SKILL.md).
