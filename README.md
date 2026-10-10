@@ -2,7 +2,7 @@
 
 Agent workflows that turn Jira Stories into BDD test cases, recommend automation test layers, and build release regression suites. The skills run in Claude Code, Codex, and Gemini CLI.
 
-Requirements guide test design. Implementation architecture guides test layers. Business risk guides regression selection.
+Requirements guide test design. Implementation architecture guides automation layers. Business risk guides regression selection.
 
 ## What it does
 
