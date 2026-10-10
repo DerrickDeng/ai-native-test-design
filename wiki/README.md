@@ -12,7 +12,7 @@ An OpenViking-based workflow that organizes Stories and notes into a Requirement
 
 ## Why LLM Wiki instead of basic RAG
 
-Requirements often span several Stories. LLM Wiki connects their rules into reusable topic pages with source links, instead of leaving agents to piece together retrieved text chunks on every query. OpenViking still provides retrieval; the Wiki adds an organized layer of requirement context.
+Business rules often span several Stories. LLM Wiki organizes them into linked topic pages that people and agents can review and reuse. Retrieval still finds the relevant pages, and source links support verification.
 
 ## How it works
 
