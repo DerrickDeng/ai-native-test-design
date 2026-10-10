@@ -16,6 +16,24 @@ A Requirement Wiki connects requirements across Stories and supplies context to 
 | [Jira CLI](skills/testcase-agent-cli/) | Downloads Jira requirements and referenced screenshots, uploads BDD cases to Story tickets, and creates or updates Zephyr tests. |
 | [Requirement Wiki](wiki/README.md) | Uses OpenViking to organize Stories into a Wiki that helps agents find requirements and retrieve context. |
 
+## How to use
+
+1. Clone the repository and open it in Claude Code, Codex, or Gemini CLI.
+2. Provide the Story ID and reviewed requirement files, including any referenced screenshots or related Stories.
+3. Ask the agent to run the skill for your task. Review the generated cases and resolve any requirement questions.
+
+For example:
+
+```text
+Use functional-test-design to design BDD test cases for <Story ID>
+from its reviewed requirement files. Record requirement issues and
+questions, then validate and independently review the output.
+```
+
+For automation layer recommendations, provide existing functional scenarios and implementation architecture. For release regression, provide the module's functional tests.
+
+See the [usage guide](docs/usage.md) for local checks, example commands, and Jira setup.
+
 ## Requirement Wiki: context across Stories
 
 Business rules often span several Stories and notes. The Requirement Wiki uses OpenViking to organize them into connected topic pages with an index.
@@ -27,33 +45,6 @@ Business rules often span several Stories and notes. The Requirement Wiki uses O
 Each rule links to its source Story or note, so agents can check the retrieved context against the original requirement.
 
 See the [Requirement Wiki guide](wiki/README.md) for setup, retrieval, and an example build.
-
-## Basic use
-
-Clone the repository and open it in Claude Code, Codex, or Gemini CLI. You need Node.js 18 or later for the CLI and local checks. The CLI uses only Node built-ins.
-
-Run from the repository root:
-
-```sh
-npm test
-npm run skills:check
-node bin/jira-sync --help
-```
-
-Try the bundled example without connecting to Jira:
-
-```sh
-node bin/jira-sync lint DEMO-101 examples/online-store/testcases/DEMO-101.feature
-node scripts/export-jira-user-story.mjs examples/online-store
-node scripts/validate-jira-user-story.mjs examples/online-store
-```
-
-## Choose a workflow
-
-- **Design tests:** provide a Story and its reviewed requirements. Use `functional-test-design` to produce BDD cases, a requirement trace, open questions, and a review record.
-- **Plan automation layers:** provide existing functional scenarios and implementation architecture. Use `automation-coverage-analysis` to recommend test layers and report coverage evidence.
-- **Build release regression:** provide the module's functional tests. Use `regression-suite-design` to compose user journeys, select high-risk scenarios, and record coverage and selection reasons.
-- **Work with Jira:** configure the Jira adapter, then use the CLI to fetch requirements or explicitly upload test content. See the [usage guide](docs/usage.md).
 
 ## Examples and evaluation
 

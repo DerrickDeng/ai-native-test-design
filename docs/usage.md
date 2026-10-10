@@ -1,6 +1,24 @@
 # Usage Guide
 
-Detailed setup, validation, and maintenance instructions for AI-Native Test Design. Start with the [project README](../README.md) for an overview and a local example. Run the commands below from the repository root.
+Detailed setup, validation, and maintenance instructions for AI-Native Test Design. Start with the [project README](../README.md) for a workflow overview. Run the commands below from the repository root.
+
+## Local setup and example
+
+You need Node.js 18 or later. The CLI uses only Node built-ins. Run these local checks and inspect the available commands:
+
+```sh
+npm test
+npm run skills:check
+node bin/jira-sync --help
+```
+
+Try the online-store example without connecting to Jira. These commands validate its BDD cases, export Jira-field text to local files, and check the export:
+
+```sh
+node bin/jira-sync lint DEMO-101 examples/online-store/testcases/DEMO-101.feature
+node scripts/export-jira-user-story.mjs examples/online-store
+node scripts/validate-jira-user-story.mjs examples/online-store
+```
 
 ## Bundled examples
 
