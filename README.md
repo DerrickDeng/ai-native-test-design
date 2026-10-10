@@ -10,11 +10,11 @@ A Requirement Wiki connects requirements across Stories and supplies context to 
 
 | Skill / Tool | What it does |
 |---|---|
-| [Functional Test Design](skills/functional-test-design/) | Reads Stories and related requirements, organizes test points, records requirement issues, and writes BDD `.feature` cases with traceability checks and independent review. |
-| [Automation Coverage Analysis](skills/automation-coverage-analysis/) | Recommends automation test layers based on each feature's implementation architecture. |
-| [Regression Suite Design](skills/regression-suite-design/) | Combines existing functional test scenarios into representative user journeys for release regression. Adds high-risk scenarios based on business risk. |
-| [Jira CLI](skills/testcase-agent-cli/) | Downloads Jira requirements and referenced screenshots, uploads BDD cases to Story tickets, and creates or updates Zephyr tests. |
-| [Requirement Wiki](wiki/README.md) | Uses OpenViking to organize Stories into a Wiki that helps agents find requirements and retrieve context. |
+| [functional test design](skills/functional-test-design/) | Reads Stories and related requirements, organizes test points, records requirement issues, and writes BDD `.feature` cases with traceability checks and independent review. |
+| [automation coverage analysis](skills/automation-coverage-analysis/) | Recommends automation test layers based on each feature's implementation architecture. |
+| [regression suite design](skills/regression-suite-design/) | Combines existing functional test scenarios into representative user journeys for release regression. Adds high-risk scenarios based on business risk. |
+| [jira cli](skills/testcase-agent-cli/) | Downloads Jira requirements and referenced screenshots, uploads BDD cases to Story tickets, and creates or updates Zephyr tests. |
+| [requirement wiki](wiki/README.md) | Uses OpenViking to organize Stories into a Wiki that helps agents find requirements and retrieve context. |
 
 ## How to use
 
