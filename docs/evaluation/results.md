@@ -1,23 +1,26 @@
 # Evaluation Results
 
-These are the results of the `functional-test-design` skill evaluation. We show
-small samples as passed checks, not as success rates.
+These are the results of the `functional-test-design` skill evaluation. The
+samples are small, so we show passed checks, not success rates.
+
+## Summary
+
+| Skill                  | Without the skill | With the skill | Sample           | Date       |
+| ---------------------- | ----------------- | -------------- | ---------------- | ---------- |
+| functional-test-design | 141 / 165         | **159 / 165**  | 4 tasks × 3 runs | 2026-10-09 |
 
 ## functional-test-design: with and without the skill
 
-Recorded on 2026-10-09. The executor and the grader are Claude Sonnet 5.5. The
-evaluation runs the same four tasks
-(see [evals.json](../../skills/functional-test-design/evals/evals.json)) in two
-configurations:
-
-- **With the skill:** the agent reads the current skill and follows it.
-- **Without the skill:** the agent gets the same task and the same repository,
-  but no skill.
-
-Both configurations work in the same repository, with the same `AGENTS.md`
-rules and the same lint. So the difference shows what the skill adds on top of
-the repository rules. Each task ran **3 times** in each configuration. One
-grader instruction set and one checklist grade all 24 runs.
+- **Date:** 2026-10-09
+- **Executor and grader:** Claude Sonnet 5.5.
+- **Tasks:** the four tasks in
+  [evals.json](../../skills/functional-test-design/evals/evals.json).
+- **Sample:** each task ran 3 times in each configuration. One grader
+  instruction set and one checklist grade all 24 runs.
+- **Configurations:** with the skill, the agent reads the current skill and
+  follows it. Without the skill, the agent gets the same task and the same
+  repository, with the same `AGENTS.md` rules and the same lint, but no skill.
+  So the difference shows what the skill adds on top of the repository rules.
 
 | Task                                      | Without the skill | With the skill    |
 | ----------------------------------------- | ----------------- | ----------------- |
@@ -49,7 +52,7 @@ How to read this:
 ## Earlier comparison with the previous skill version
 
 On 2026-09-29, an earlier checklist compared the skill with its previous
-version: 155 / 164 against 137 / 165 (4 tasks × 3 runs). The checklist for
+version: 156 / 165 against 137 / 165 (4 tasks × 3 runs). The checklist for
 tasks 3 and 4 changed after that run, so those numbers do not compare directly
 with the table above.
 
