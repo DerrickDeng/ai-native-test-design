@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="770" viewBox="0 0 1280 770" role="img" aria-labelledby="t d">
   <title id="t">AI-Native Test Design overview</title>
-  <desc id="d">The CLI fetches a Jira Story into dated requirement files. A human reviews the formatted copy. The functional-test-design skill reads the Story and its related Stories, splits the AC into claims, records gaps as questions, writes BDD cases, runs lint, and runs an independent review. Export writes the Jira text, and upload to Jira and Zephyr runs only when the user asks. A Requirement Wiki is optional navigation. Automation coverage analysis and regression suite design are separate skills that run on request from existing feature files.</desc>
+  <desc id="d">The CLI fetches a Jira Story into dated requirement files. The functional-test-design skill reads the Story and its related Stories, splits the AC into claims, records gaps as questions, writes BDD cases, runs lint, and runs an independent review. Export writes the Jira text, and upload to Jira and Zephyr runs only when the user asks. A Requirement Wiki is optional navigation. Automation coverage analysis and regression suite design are separate skills that run on request from existing feature files.</desc>
   <defs>
     <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
     <marker id="ay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ca8a04"/></marker>
@@ -36,8 +36,8 @@
   <text x="274" y="192" class="bt">Requirement files</text>
   <text x="274" y="218" class="bx">Raw snapshot: dated,</text>
   <text x="274" y="236" class="bx">never edited</text>
-  <text x="274" y="260" class="bx">Formatted copy: same</text>
-  <text x="274" y="278" class="bx">words, human-reviewed</text>
+  <text x="274" y="260" class="bx">Formatted copy: the</text>
+  <text x="274" y="278" class="bx">same words, for design</text>
 
   <!-- 3 Skill -->
   <rect x="506" y="160" width="330" height="250" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
@@ -74,20 +74,18 @@
   <text x="1060" y="220" class="lbl" text-anchor="middle">export</text>
 
   <!-- Human touchpoints -->
-  <rect x="256" y="314" width="214" height="30" rx="15" fill="#ffedd5"/>
-  <text x="363" y="334" class="tag" text-anchor="middle">Human reviews the copy</text>
   <rect x="872" y="314" width="170" height="30" rx="15" fill="#ffedd5"/>
   <text x="957" y="334" class="tag" text-anchor="middle">Human answers questions</text>
   <rect x="1078" y="314" width="162" height="30" rx="15" fill="#ffedd5"/>
   <text x="1159" y="334" class="tag" text-anchor="middle">Human asks to upload</text>
 
   <!-- Wiki -->
-  <rect x="256" y="364" width="214" height="96" rx="14" fill="#fefce8" stroke="#ca8a04" stroke-width="2" stroke-dasharray="6 5"/>
-  <text x="274" y="390" class="bt">Requirement Wiki</text>
-  <text x="274" y="412" class="bx">Optional. Helps find</text>
-  <text x="274" y="430" class="bx">related Stories. The</text>
-  <text x="274" y="448" class="bx">Story file is the evidence.</text>
-  <path class="dl" d="M470 400 L504 400"/>
+  <rect x="256" y="320" width="214" height="96" rx="14" fill="#fefce8" stroke="#ca8a04" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="274" y="346" class="bt">Requirement Wiki</text>
+  <text x="274" y="368" class="bx">Optional. Helps find</text>
+  <text x="274" y="386" class="bx">related Stories. The</text>
+  <text x="274" y="404" class="bx">Story file is the evidence.</text>
+  <path class="dl" d="M470 356 L504 356"/>
 
   <!-- On request -->
   <text x="40" y="502" class="col">SEPARATE SKILLS, RUN ON REQUEST, FROM EXISTING .feature FILES</text>

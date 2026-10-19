@@ -39,7 +39,7 @@ Three rules guide the skills:
 The normal Story workflow has these steps:
 
 1. The CLI fetches the Story into a dated raw snapshot. Nobody edits it.
-2. Someone makes a formatted copy with the same words. A human reviews it.
+2. A formatted copy keeps the same words, in a form that is easy to read.
 3. `functional-test-design` reads the Story and its related Stories. It splits
    the AC into checkable claims in `coverage.md` and gives each claim a status:
    Covered, Question, Owned elsewhere, or Not testable.
@@ -52,9 +52,8 @@ The normal Story workflow has these steps:
 8. The CLI exports the Jira text. Upload to Jira and Zephyr runs only when the
    user asks.
 
-A human stays in control. The human reviews the formatted copy, answers the
-questions in `note.md`, and asks for each Jira write. Local checks never write
-to Jira.
+A human stays in control. The human answers the questions in `note.md` and
+asks for each Jira write. Local checks never write to Jira.
 
 `automation-coverage-analysis` and `regression-suite-design` are separate
 skills. They run only when the user asks, and they read existing `.feature`
@@ -66,13 +65,13 @@ The reviewed BDD cases are the input for
 ## Quick start
 
 1. Clone the repository. Open it in Claude Code, Codex, or Gemini CLI.
-2. Give the agent the Story ID and the reviewed requirement files. Include the
+2. Give the agent the Story ID and the requirement files. Include the
    referenced screenshots and related Stories.
 3. Ask the agent to run the skill. For example:
 
    ```text
    Use functional-test-design to design BDD test cases for <Story ID>
-   from its reviewed requirement files. Record requirement issues and
+   from its requirement files. Record requirement issues and
    questions, then validate and independently review the output.
    ```
 
