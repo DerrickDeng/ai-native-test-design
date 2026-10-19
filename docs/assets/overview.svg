@@ -1,81 +1,119 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="770" viewBox="0 0 1280 770" role="img" aria-labelledby="t d">
   <title id="t">AI-Native Test Design overview</title>
-  <desc id="d">A Jira Story and related rules from the Requirement Wiki go to the functional-test-design skill. A human reviews the BDD cases and requirement questions. Reviewed cases go to Jira and Zephyr, to test layer analysis, and to release regression design.</desc>
+  <desc id="d">The CLI fetches a Jira Story into dated requirement files. A human reviews the formatted copy. The functional-test-design skill reads the Story and its related Stories, splits the AC into claims, records gaps as questions, writes BDD cases, runs lint, and runs an independent review. Export writes the Jira text, and upload to Jira and Zephyr runs only when the user asks. A Requirement Wiki is optional navigation. Automation coverage analysis and regression suite design are separate skills that run on request from existing feature files.</desc>
   <defs>
     <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
+    <marker id="ay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ca8a04"/></marker>
     <style>
       text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #0f172a; }
       .h1 { font-size: 30px; font-weight: 700; }
       .sub { font-size: 16px; fill: #475569; }
       .col { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; fill: #64748b; }
-      .bt { font-size: 17px; font-weight: 700; }
-      .bx { font-size: 14px; fill: #475569; }
+      .bt { font-size: 16px; font-weight: 700; }
+      .bx { font-size: 13.5px; fill: #475569; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; fill: #1e3a8a; }
+      .tag { font-size: 12.5px; font-weight: 600; fill: #9a3412; }
+      .lbl { font-size: 12px; fill: #64748b; }
       .big { font-size: 30px; font-weight: 700; fill: #15803d; }
       .ln { fill: none; stroke: #64748b; stroke-width: 2; marker-end: url(#a); }
+      .dl { fill: none; stroke: #ca8a04; stroke-width: 2; stroke-dasharray: 6 5; marker-end: url(#ay); }
     </style>
   </defs>
-  <rect width="1200" height="600" rx="24" fill="#f8fafc" stroke="#e2e8f0"/>
-  <text x="48" y="66" class="h1">AI-Native Test Design</text>
-  <text x="48" y="96" class="sub">From a Jira Story to reviewed BDD test cases, test layers, and release regression suites</text>
+  <rect width="1280" height="770" rx="24" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="40" y="62" class="h1">AI-Native Test Design</text>
+  <text x="40" y="92" class="sub">From a Jira Story to traceable BDD test cases. Each Jira write runs only when the user asks.</text>
 
-  <text x="48" y="146" class="col">INPUT</text>
-  <text x="340" y="146" class="col">AGENT SKILL</text>
-  <text x="670" y="146" class="col">HUMAN</text>
-  <text x="920" y="146" class="col">OUTPUT</text>
+  <text x="40" y="142" class="col">STORY WORKFLOW</text>
 
-  <rect x="48" y="160" width="240" height="100" rx="14" fill="#fff" stroke="#93c5fd" stroke-width="2"/>
-  <text x="68" y="196" class="bt">Jira Story</text>
-  <text x="68" y="222" class="bx">AC, confirmed notes,</text>
-  <text x="68" y="242" class="bx">and screenshots</text>
+  <!-- 1 Jira Story -->
+  <rect x="40" y="160" width="180" height="140" rx="14" fill="#fff" stroke="#93c5fd" stroke-width="2"/>
+  <text x="58" y="192" class="bt">Jira Story</text>
+  <text x="58" y="218" class="bx">Description, AC,</text>
+  <text x="58" y="238" class="bx">and screenshots</text>
 
-  <rect x="48" y="290" width="240" height="100" rx="14" fill="#fff" stroke="#93c5fd" stroke-width="2"/>
-  <text x="68" y="326" class="bt">Requirement Wiki</text>
-  <text x="68" y="352" class="bx">Related rules from other</text>
-  <text x="68" y="372" class="bx">Stories, with sources</text>
+  <!-- 2 Requirement files -->
+  <rect x="256" y="160" width="214" height="140" rx="14" fill="#fff" stroke="#93c5fd" stroke-width="2"/>
+  <text x="274" y="192" class="bt">Requirement files</text>
+  <text x="274" y="218" class="bx">Raw snapshot: dated,</text>
+  <text x="274" y="236" class="bx">never edited</text>
+  <text x="274" y="260" class="bx">Formatted copy: same</text>
+  <text x="274" y="278" class="bx">words, human-reviewed</text>
 
-  <rect x="340" y="160" width="280" height="230" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
-  <text x="362" y="196" class="bt">functional-test-design</text>
-  <text x="362" y="232" class="bx">1. Organize test points</text>
-  <text x="362" y="262" class="bx">2. Record requirement questions</text>
-  <text x="362" y="292" class="bx">3. Write BDD .feature cases</text>
-  <text x="362" y="322" class="bx">4. Check AC traceability</text>
-  <text x="362" y="352" class="bx">5. Run an independent review</text>
+  <!-- 3 Skill -->
+  <rect x="506" y="160" width="330" height="250" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="526" y="192" class="bt">functional-test-design</text>
+  <text x="526" y="224" class="bx">1. Read the Story and its related Stories</text>
+  <text x="526" y="252" class="bx">2. Split the AC into checkable claims</text>
+  <text x="526" y="280" class="bx">3. Give each claim a status</text>
+  <text x="526" y="308" class="bx">4. Record gaps as questions, no guesses</text>
+  <text x="526" y="336" class="bx">5. Write BDD cases; trace each Then</text>
+  <text x="526" y="364" class="bx">6. Run lint and an independent review</text>
+  <text x="526" y="394" class="lbl" style="font-size:11.5px">Status: Covered, Question, Owned elsewhere, Not testable</text>
 
-  <rect x="670" y="160" width="200" height="230" rx="14" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-  <text x="690" y="196" class="bt">Human review</text>
-  <text x="690" y="232" class="bx">Answer requirement</text>
-  <text x="690" y="252" class="bx">questions</text>
-  <text x="690" y="288" class="bx">Approve the cases</text>
-  <text x="690" y="324" class="bx">Approve each</text>
-  <text x="690" y="344" class="bx">Jira write</text>
+  <!-- 4 Output -->
+  <rect x="872" y="160" width="170" height="140" rx="14" fill="#fff" stroke="#86efac" stroke-width="2"/>
+  <text x="890" y="192" class="bt">Output files</text>
+  <text x="890" y="218" class="mono">&lt;ID&gt;.feature</text>
+  <text x="890" y="240" class="mono">coverage.md</text>
+  <text x="890" y="262" class="mono">note.md</text>
+  <text x="890" y="284" class="mono">review.md</text>
 
-  <rect x="920" y="160" width="232" height="66" rx="12" fill="#fff" stroke="#86efac" stroke-width="2"/>
-  <text x="938" y="187" class="bt">Jira and Zephyr</text>
-  <text x="938" y="210" class="bx">jira cli uploads the cases</text>
-  <rect x="920" y="242" width="232" height="66" rx="12" fill="#fff" stroke="#86efac" stroke-width="2"/>
-  <text x="938" y="269" class="bt">Test layers</text>
-  <text x="938" y="292" class="bx">automation-coverage-analysis</text>
-  <rect x="920" y="324" width="232" height="66" rx="12" fill="#fff" stroke="#86efac" stroke-width="2"/>
-  <text x="938" y="351" class="bt">Release regression</text>
-  <text x="938" y="374" class="bx">regression-suite-design</text>
-  <text x="920" y="416" class="bx">BDD cases → ai-native-ui-automation</text>
+  <!-- 5 Jira -->
+  <rect x="1078" y="160" width="162" height="140" rx="14" fill="#fff" stroke="#86efac" stroke-width="2"/>
+  <text x="1096" y="192" class="bt">Jira and Zephyr</text>
+  <text x="1096" y="218" class="bx">The CLI exports</text>
+  <text x="1096" y="236" class="bx">the Jira text.</text>
+  <text x="1096" y="260" class="bx">Upload runs only</text>
+  <text x="1096" y="278" class="bx">when the user asks.</text>
 
-  <path class="ln" d="M288 210 C314 210 314 240 338 240"/>
-  <path class="ln" d="M288 340 C314 340 314 310 338 310"/>
-  <path class="ln" d="M620 275 L668 275"/>
-  <path class="ln" d="M870 275 C895 275 895 193 918 193"/>
-  <path class="ln" d="M870 275 L918 275"/>
-  <path class="ln" d="M870 275 C895 275 895 357 918 357"/>
+  <path class="ln" d="M220 230 L254 230"/>
+  <text x="238" y="220" class="lbl" text-anchor="middle">fetch</text>
+  <path class="ln" d="M470 230 L504 230"/>
+  <path class="ln" d="M836 230 L870 230"/>
+  <path class="ln" d="M1042 230 L1076 230"/>
+  <text x="1060" y="220" class="lbl" text-anchor="middle">export</text>
 
-  <rect x="48" y="450" width="530" height="110" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
-  <text x="70" y="482" class="col">EVAL: CHECKS PASSED</text>
-  <text x="70" y="526" class="big">85% → 96%</text>
-  <text x="270" y="512" class="bx">without the skill → with the skill</text>
-  <text x="270" y="534" class="bx">4 tasks × 3 runs, 165 checks</text>
+  <!-- Human touchpoints -->
+  <rect x="256" y="314" width="214" height="30" rx="15" fill="#ffedd5"/>
+  <text x="363" y="334" class="tag" text-anchor="middle">Human reviews the copy</text>
+  <rect x="872" y="314" width="170" height="30" rx="15" fill="#ffedd5"/>
+  <text x="957" y="334" class="tag" text-anchor="middle">Human answers questions</text>
+  <rect x="1078" y="314" width="162" height="30" rx="15" fill="#ffedd5"/>
+  <text x="1159" y="334" class="tag" text-anchor="middle">Human asks to upload</text>
 
-  <rect x="622" y="450" width="530" height="110" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
-  <text x="644" y="482" class="col">DESIGN RULES</text>
-  <text x="644" y="510" class="bx">Requirements guide test design.</text>
-  <text x="644" y="530" class="bx">Implementation architecture guides test layers.</text>
-  <text x="644" y="550" class="bx">Business risk guides regression selection.</text>
+  <!-- Wiki -->
+  <rect x="256" y="364" width="214" height="96" rx="14" fill="#fefce8" stroke="#ca8a04" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="274" y="390" class="bt">Requirement Wiki</text>
+  <text x="274" y="412" class="bx">Optional. Helps find</text>
+  <text x="274" y="430" class="bx">related Stories. The</text>
+  <text x="274" y="448" class="bx">Story file is the evidence.</text>
+  <path class="dl" d="M470 400 L504 400"/>
+
+  <!-- On request -->
+  <text x="40" y="502" class="col">SEPARATE SKILLS, RUN ON REQUEST, FROM EXISTING .feature FILES</text>
+  <path class="ln" d="M957 344 L957 470 L600 470 L600 516"/>
+  <path class="ln" d="M957 470 L957 516"/>
+
+  <rect x="40" y="518" width="590" height="96" rx="14" fill="#fff" stroke="#c4b5fd" stroke-width="2"/>
+  <text x="60" y="548" class="bt">automation-coverage-analysis</text>
+  <text x="60" y="574" class="bx">Input: functional cases and the implementation architecture</text>
+  <text x="60" y="596" class="bx">Output: a test layer for each behavior (unit, integration, or E2E) and its evidence</text>
+
+  <rect x="650" y="518" width="590" height="96" rx="14" fill="#fff" stroke="#c4b5fd" stroke-width="2"/>
+  <text x="670" y="548" class="bt">regression-suite-design</text>
+  <text x="670" y="574" class="bx">Input: the functional cases of all Stories in a module</text>
+  <text x="670" y="596" class="bx">Output: a source mapping, a regression suite, and a Jira coverage table</text>
+
+  <!-- Footer -->
+  <rect x="40" y="640" width="590" height="104" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="60" y="670" class="col">EVAL OF functional-test-design: CHECKS PASSED</text>
+  <text x="60" y="718" class="big">85% → 96%</text>
+  <text x="262" y="704" class="bx">without the skill → with the skill</text>
+  <text x="262" y="726" class="bx">4 tasks × 3 runs, 165 checks</text>
+
+  <rect x="650" y="640" width="590" height="104" rx="14" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="670" y="670" class="col">WHAT DECIDES EACH OUTPUT</text>
+  <text x="670" y="698" class="bx">Requirements decide what to test.</text>
+  <text x="670" y="718" class="bx">Implementation architecture decides where to automate.</text>
+  <text x="670" y="738" class="bx">Business risk decides what goes into regression.</text>
 </svg>

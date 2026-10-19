@@ -1,23 +1,24 @@
 # AI-Native Test Design
 
-Agent skills that turn a Jira Story into reviewed BDD test cases. The agent
-records requirement gaps as questions and does not guess. It also recommends a
-test layer for each case and builds release regression suites. A Requirement
-Wiki gives the agent related rules from other Stories. In the evaluation, the
-agent passed 96% of the checks with the skill and 85% without it. The skills
-run in Claude Code, Codex, and Gemini CLI.
+Agent skills that turn a Jira Story into traceable BDD test cases. The agent
+splits the AC into checkable claims, and each `Then` traces back to one claim.
+It records requirement gaps as questions and does not guess. Two separate
+skills use the cases to recommend test layers and to build release regression
+suites. Jira writes run only when the user asks. In the evaluation, the agent
+passed 96% of the checks with the skill and 85% without it. The skills run in
+Claude Code, Codex, and Gemini CLI.
 
 ![AI-Native Test Design overview](docs/assets/overview.svg)
 
 ## What is inside
 
-| Part                                                                 | Input                                                | Output                                                         |
-| -------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------- |
-| [functional-test-design](skills/functional-test-design/)             | Story, AC, notes, and screenshots                    | BDD `.feature` cases, requirement questions, and an AC trace   |
-| [automation-coverage-analysis](skills/automation-coverage-analysis/) | Functional cases and the implementation architecture | A recommended test layer for each case                         |
-| [regression-suite-design](skills/regression-suite-design/)           | The functional cases of a module                     | User journeys for release regression, plus high-risk scenarios |
-| [jira cli](skills/testcase-agent-cli/)                               | A Story ID                                           | Downloaded requirements; cases uploaded to Jira and Zephyr     |
-| [Requirement Wiki](wiki/README.md)                                   | Stories and notes                                    | Linked topic pages that agents search for context              |
+| Part                                                                 | Input                                                | Output                                                            |
+| -------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------- |
+| [functional-test-design](skills/functional-test-design/)             | Story, AC, notes, and screenshots                    | BDD `.feature` cases, requirement questions, and an AC trace      |
+| [automation-coverage-analysis](skills/automation-coverage-analysis/) | Functional cases and the implementation architecture | A recommended test layer for each case                            |
+| [regression-suite-design](skills/regression-suite-design/)           | The functional cases of a module                     | User journeys for release regression, plus high-risk scenarios    |
+| [jira cli](skills/testcase-agent-cli/)                               | A Story ID and the cases                             | A dated requirement snapshot, Jira text, and an upload on request |
+| [Requirement Wiki](wiki/README.md)                                   | Stories and notes                                    | Linked topic pages that agents search for context                 |
 
 ## Contents
 
@@ -35,16 +36,29 @@ Three rules guide the skills:
 - Implementation architecture guides automation test layers.
 - Business risk guides regression selection.
 
-Each case links to the AC that it covers. A trace check finds each AC that has
-no case. Then an independent review checks the cases against the source text.
+The normal Story workflow has these steps:
 
-A human stays in control:
+1. The CLI fetches the Story into a dated raw snapshot. Nobody edits it.
+2. A human makes a formatted copy with the same words and reviews it.
+3. `functional-test-design` reads the Story and its related Stories. It splits
+   the AC into checkable claims in `coverage.md` and gives each claim a status:
+   Covered, Question, Owned elsewhere, or Not testable.
+4. The agent records each gap or conflict as a question in `note.md`. It does
+   not guess.
+5. The agent writes the `.feature` file. Each `Then` traces to a claim.
+6. Lint checks the feature, the trace, and the overlap with other Stories.
+7. A reviewer agent in a new context checks the cases against the source text.
+   Its result goes to `review.md`.
+8. The CLI exports the Jira text. Upload to Jira and Zephyr runs only when the
+   user asks.
 
-- The human answers the requirement questions. The agent does not fill a gap
-  with a guess.
-- The human approves the cases before they go to Jira.
-- Each Jira or Zephyr write is an explicit command. Local checks never write to
-  Jira.
+A human stays in control. The human reviews the formatted copy, answers the
+questions in `note.md`, and asks for each Jira write. Local checks never write
+to Jira.
+
+`automation-coverage-analysis` and `regression-suite-design` are separate
+skills. They run only when the user asks, and they read existing `.feature`
+files.
 
 The reviewed BDD cases are the input for
 [ai-native-ui-automation](https://github.com/DerrickDeng/ai-native-ui-automation).
@@ -83,11 +97,12 @@ uses OpenViking to put them into linked topic pages with an index.
   Stories and rules.
 - **Connect rules:** Get the prerequisites and the behavior that other Stories
   describe.
-- **Give context to agents:** Test design and UI automation agents get only the
-  related requirements, not the full collection.
+- **Give context to agents:** The UI automation step implementor gets the
+  business rules that a step needs, not the full collection.
 
-Each rule links to its source Story or note. So the agent can check the context
-against the original requirement.
+Each rule links to its source Story or note. The Story file stays the evidence.
+For test design, the Wiki only helps to find related Stories, and the agent
+then reads each Story file.
 
 The [Requirement Wiki guide](wiki/README.md) has the setup, the search, and an
 example build.
