@@ -39,7 +39,7 @@ Three rules guide the skills:
 The normal Story workflow has these steps:
 
 1. The CLI fetches the Story into a dated raw snapshot. Nobody edits it.
-2. A human makes a formatted copy with the same words and reviews it.
+2. Someone makes a formatted copy with the same words. A human reviews it.
 3. `functional-test-design` reads the Story and its related Stories. It splits
    the AC into checkable claims in `coverage.md` and gives each claim a status:
    Covered, Question, Owned elsewhere, or Not testable.
